@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Insights | OmniTax Professionals</title>
+    <meta name="description" content="Tax news, insights, and technical updates from OmniTax Professionals — covering income tax, CGT, M&A, international tax, GST, and governance developments.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.omnitaxprofessionals.com.au/insights.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Insights | OmniTax Professionals">
+    <meta property="og:description" content="Tax news and technical updates from OmniTax Professionals.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.omnitaxprofessionals.com.au/insights.html">
+    <meta property="og:image" content="assets/icons/omnitaxicon.jpg">
+    <meta property="og:locale" content="en_AU">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/icons/omnitaxicon.jpg">
+
+    <!-- Google Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* ── Section ── */
+        .tni-section {
+            background: var(--off-white);
+            padding: 80px 0 100px;
+        }
+        .tni-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Header ── */
+        .tni-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+        .tni-header-left { display: flex; flex-direction: column; gap: 10px; }
+        .tni-eyebrow {
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            color: var(--omni-gold-dark);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tni-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 2px;
+            background: var(--omni-gold);
+            border-radius: 1px;
+        }
+        .tni-title {
+            font-family: var(--font-primary);
+            font-size: clamp(26px, 3.5vw, 40px);
+            font-weight: 700;
+            color: var(--omni-green-dark);
+            line-height: 1.15;
+        }
+        .tni-count {
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            color: var(--mid-grey);
+            align-self: flex-end;
+        }
+
+        /* ── Grid ── */
+        .tni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        /* ── Card ── */
+        .tni-card {
+            background: var(--white);
+            border: 1px solid rgba(81, 132, 101, 0.15);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s var(--ease);
+            position: relative;
+            box-shadow: var(--shadow-card);
+        }
+        .tni-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.45);
+            box-shadow: var(--shadow-lift), 0 0 0 1px rgba(212, 175, 55, 0.2);
+        }
+        .tni-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--omni-green), var(--omni-gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--ease);
+            z-index: 1;
+        }
+        .tni-card:hover::before { transform: scaleX(1); }
+
+        /* Thumbnail */
+        .tni-card-preview {
+            position: relative;
+            background: #f0f2f0;
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(81, 132, 101, 0.08);
+        }
+        .tni-card-preview canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .tni-card-shield {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            cursor: pointer;
+        }
+        .tni-skeleton {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #e8ede9 25%, #f0f4f0 50%, #e8ede9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .tni-card-pages {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--omni-green-dark);
+            background: rgba(255,255,255,0.92);
+            padding: 3px 9px;
+            border-radius: 20px;
+            border: 1px solid rgba(81, 132, 101, 0.2);
+            z-index: 4;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .tni-card-hint {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(1, 50, 32, 0.55);
+            opacity: 0;
+            transition: opacity 0.22s ease;
+            z-index: 5;
+        }
+        .tni-card:hover .tni-card-hint { opacity: 1; }
+        .tni-hint-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .tni-hint-circle {
+            width: 52px; height: 52px;
+            border: 2px solid var(--omni-gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(212, 175, 55, 0.12);
+        }
+        .tni-hint-circle svg { width: 22px; height: 22px; fill: var(--omni-gold); }
+        .tni-hint-label {
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        /* Card body */
+        .tni-card-body {
+            padding: 18px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .tni-card-date {
+            font-family: var(--font-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--omni-gold-dark);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .tni-card-title {
+            font-family: var(--font-primary);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--omni-green-dark);
+            line-height: 1.45;
+        }
+
+        /* Empty state */
+        .tni-empty {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 24px;
+            gap: 14px;
+            border: 2px dashed rgba(81, 132, 101, 0.18);
+            border-radius: var(--radius-lg);
+        }
+        .tni-empty svg { width: 32px; height: 32px; stroke: var(--omni-green); }
+        .tni-empty-title { font-family: var(--font-primary); font-size: 18px; color: var(--omni-green); font-weight: 600; }
+        .tni-empty-sub { font-family: var(--font-secondary); font-size: 13px; color: var(--mid-grey); }
+
+        /* ════════════════════════════════════════
+           MODAL — one page at a time
+        ════════════════════════════════════════ */
+        .tni-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background: rgba(1, 20, 10, 0.82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .tni-overlay.open { display: flex; flex-direction: column; }
+
+        /* Header bar */
+        .tni-mhd {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 24px;
+            background: #013220;
+            border-bottom: 1px solid rgba(81, 132, 101, 0.3);
+            flex-wrap: wrap;
+        }
+        .tni-mhd-date {
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--omni-gold);
+            white-space: nowrap;
+        }
+        .tni-mhd-sep { width: 1px; height: 20px; background: rgba(81,132,101,0.4); }
+        .tni-mhd-title {
+            flex: 1;
+            font-family: var(--font-primary);
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.92);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tni-mhd-pages {
+            font-family: var(--font-secondary);
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            white-space: nowrap;
+        }
+        .tni-mhd-pages b { color: rgba(255,255,255,0.88); font-weight: 600; }
+        .tni-mhd-close {
+            width: 32px; height: 32px;
+            border: 1px solid rgba(81,132,101,0.4);
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color 0.15s, background 0.15s;
+            flex-shrink: 0;
+        }
+        .tni-mhd-close:hover { border-color: var(--omni-gold); background: rgba(212,175,55,0.1); }
+        .tni-mhd-close svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.65); }
+
+        /* Scrollable page area */
+        .tni-mpage {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #0c1510;
+            display: flex;
+            justify-content: center;
+            padding: 32px 16px;
+        }
+        .tni-mpage-inner {
+            width: 100%;
+            max-width: 820px;
+        }
+        .tni-mpage canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            user-select: none;
+            -webkit-user-select: none;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        }
+        .tni-mpage-shield {
+            position: fixed; /* sits over canvas to block interaction */
+            inset: 0;
+            z-index: 10;
+            pointer-events: none; /* let scroll through but block copy */
+            user-select: none;
+        }
+        .tni-mloading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+        .tni-spinner {
+            width: 36px; height: 36px;
+            border: 3px solid rgba(81,132,101,0.15);
+            border-top-color: var(--omni-green);
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Footer nav */
+        .tni-mft {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 14px 24px;
+            background: #013220;
+            border-top: 1px solid rgba(81,132,101,0.2);
+        }
+        .tni-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 22px;
+            border: 1px solid rgba(81,132,101,0.4);
+            border-radius: 6px;
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.16s ease;
+        }
+        .tni-nav:hover:not(:disabled) {
+            border-color: var(--omni-green-light);
+            color: #fff;
+            background: rgba(81,132,101,0.15);
+        }
+        .tni-nav:disabled { opacity: 0.22; cursor: not-allowed; }
+        .tni-nav svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .tni-mft-count {
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+            min-width: 70px;
+            text-align: center;
+        }
+
+        /* Watermark */
+        .tni-wm {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 6px;
+            background: rgba(212,175,55,0.04);
+            border-top: 1px solid rgba(212,175,55,0.1);
+            font-family: var(--font-secondary);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(212,175,55,0.28);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tni-section { padding: 56px 0 72px; }
+            .tni-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+            .tni-mhd { padding: 12px 16px; }
+            .tni-mhd-title { font-size: 14px; }
+            .tni-mpage { padding: 20px 12px; }
+        }
+        @media (max-width: 480px) {
+            .tni-grid { grid-template-columns: 1fr; }
+            .tni-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════
+        NAVIGATION
+    ══════════════════════════════════════════ -->
+    <header role="banner">
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="navbar__inner">
+                <a href="index.html" class="navbar__brand" aria-label="OmniTax Professionals home">
+                    <img src="assets/icons/omnitaxicon.jpg" alt="OmniTax Professionals logo" class="navbar__logo">
+                    <span class="navbar__name">OmniTax Professionals</span>
+                </a>
+                <ul class="navbar__nav" role="list">
+                    <li><a href="index.html" class="navbar__link">Home</a></li>
+                    <li><a href="services.html" class="navbar__link">Services</a></li>
+                    <li class="navbar__dropdown-wrap">
+                        <button class="navbar__dropdown-btn" aria-expanded="false" aria-haspopup="true">
+                            Our Firm <span class="navbar__caret" aria-hidden="true">▾</span>
+                        </button>
+                        <ul class="navbar__dropdown-menu" role="list">
+                            <li><a href="our-people.html" class="navbar__dropdown-item">Our People</a></li>
+                            <li><a href="our-values.html" class="navbar__dropdown-item">Our Values</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="insights.html" class="navbar__link active">Insights</a></li>
+                    <li><a href="careers.html" class="navbar__link">Careers</a></li>
+                    <li><a href="contact.html" class="navbar__link">Contact</a></li>
+                    <li><a href="dashboard.html" class="navbar__cta" aria-label="Access client portal">Client Portal</a></li>
+                </ul>
+                <button class="navbar__hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+            <ul class="navbar__mobile" id="mobileNav" role="list" aria-label="Mobile navigation">
+                <li><a href="index.html" class="navbar__link">Home</a></li>
+                <li><a href="services.html" class="navbar__link">Services</a></li>
+                <li class="navbar__mobile-group">
+                    <button class="navbar__mobile-group-btn" aria-expanded="false">
+                        Our Firm <span class="navbar__caret" aria-hidden="true">▾</span>
+                    </button>
+                    <ul class="navbar__mobile-submenu" role="list">
+                        <li><a href="our-people.html" class="navbar__link">Our People</a></li>
+                        <li><a href="our-values.html" class="navbar__link">Our Values</a></li>
+                    </ul>
+                </li>
+                <li><a href="insights.html" class="navbar__link">Insights</a></li>
+                <li><a href="careers.html" class="navbar__link">Careers</a></li>
+                <li><a href="contact.html" class="navbar__link">Contact</a></li>
+                <li><a href="dashboard.html" class="navbar__cta">Client Portal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- PAGE HERO -->
+        <section class="page-hero" aria-label="Insights hero">
+            <div class="container">
+                <span class="hero__eyebrow">News &amp; Analysis</span>
+                <h1>Insights</h1>
+                <p class="lead mt-24">
+                    Technical updates, market commentary, and practical tax analysis from the OmniTax Professionals team.
+                </p>
+            </div>
+        </section>
+
+        <!--
+            HOW TO ADD A NEW REPORT:
+            1. Drop your PDF into assets/tnipdfs/
+            2. Open assets/tnipdfs/manifest.json and add:
+               { "id": "report-002", "title": "Title Here", "date": "YYYY-MM-DD", "file": "filename.pdf" }
+        -->
+        <section class="tni-section" aria-label="Tax News and Insights">
+            <div class="tni-inner">
+
+                <div class="tni-header">
+                    <div class="tni-header-left">
+                        <span class="tni-eyebrow">Fortnightly Reports</span>
+                        <h2 class="tni-title">Tax News &amp; Insights</h2>
+                    </div>
+                    <span class="tni-count" id="tniCount"></span>
+                </div>
+
+                <div class="tni-grid" id="tniGrid" role="list"></div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ══════════════════════════════════════════
+        PDF VIEWER MODAL
+    ══════════════════════════════════════════ -->
+    <div class="tni-overlay" id="tniOverlay" role="dialog" aria-modal="true" aria-labelledby="tniTitle">
+
+        <!-- Header -->
+        <div class="tni-mhd">
+            <span class="tni-mhd-date" id="tniDate"></span>
+            <div class="tni-mhd-sep"></div>
+            <span class="tni-mhd-title" id="tniTitle"></span>
+            <div class="tni-mhd-sep"></div>
+            <span class="tni-mhd-pages">Page <b id="tniCur">1</b> of <b id="tniTot">—</b></span>
+            <button class="tni-mhd-close" id="tniClose" aria-label="Close viewer">
+                <svg viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+            </button>
+        </div>
+
+        <!-- Single-page scroll area -->
+        <div class="tni-mpage" id="tniPage">
+            <div class="tni-mpage-inner" id="tniPageInner">
+                <div class="tni-mloading"><div class="tni-spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- Watermark -->
+        <div class="tni-wm">&#9632; OmniTax Professionals &#9632; For authorised viewing only &#9632;</div>
+
+        <!-- Footer nav -->
+        <div class="tni-mft">
+            <button class="tni-nav" id="tniPrev" disabled>
+                <svg viewBox="0 0 14 14"><polyline points="9,2 5,7 9,12"/></svg>
+                Previous
+            </button>
+            <span class="tni-mft-count" id="tniCount2">— / —</span>
+            <button class="tni-nav" id="tniNext" disabled>
+                Next
+                <svg viewBox="0 0 14 14"><polyline points="5,2 9,7 5,12"/></svg>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════
+        FOOTER
+    ══════════════════════════════════════════ -->
+    <footer class="footer" role="contentinfo" aria-label="Site footer">
+        <div class="footer__grid">
+            <div>
+                <div class="footer__brand">
+                    <img src="assets/icons/omnitaxicon.jpg" alt="OmniTax Professionals" class="footer__logo">
+                    <span class="footer__name">OmniTax Professionals</span>
+                </div>
+                <p class="footer__desc">
+                    A premium tax advisory firm built on Big&nbsp;4 expertise. Independent,
+                    conflict-free, and solutions-focused — serving clients across Australia and globally.
+                </p>
+                <div class="footer__registrations">
+                    <div class="footer__reg-badge"><span>TPB</span> Registered Tax Agent</div>
+                    <div class="footer__reg-badge"><span>CAANZ</span> Registered Practice Entity Member</div>
+                </div>
+            </div>
+            <nav aria-label="Services footer navigation">
+                <div class="footer__col">
+                    <h5>Services</h5>
+                    <ul class="footer__links">
+                        <li><a href="services.html">Income Tax Advisory</a></li>
+                        <li><a href="services.html">CGT Advisory</a></li>
+                        <li><a href="services.html">M&amp;A Tax Structuring</a></li>
+                        <li><a href="services.html">International Tax</a></li>
+                        <li><a href="services.html">GST Advisory</a></li>
+                        <li><a href="services.html">Tax Governance</a></li>
+                        <li><a href="services.html">View All Services</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <nav aria-label="Company footer navigation">
+                <div class="footer__col">
+                    <h5>Company</h5>
+                    <ul class="footer__links">
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="our-people.html">Our People</a></li>
+                        <li><a href="our-values.html">Our Values</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="dashboard.html">Client Portal</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="footer__col">
+                <h5>Contact</h5>
+                <div class="footer__contact-line">
+                    <span class="footer__contact-icon" aria-hidden="true">📍</span>
+                    <span>Brisbane, Queensland, Australia</span>
+                </div>
+                <div class="footer__contact-line">
+                    <span class="footer__contact-icon" aria-hidden="true">✉</span>
+                    <a href="mailto:contact@omnitaxprofessionals.com.au">contact@omnitaxprofessionals.com.au</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span>&copy; <span id="footerYear"></span> OmniTax Professionals Pty Ltd. All rights reserved.</span>
+            <div style="display:flex;gap:20px;">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <script>
+        /* ── Nav ── */
+        const navToggle = document.getElementById('navToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        navToggle.addEventListener('click', () => {
+            const open = mobileNav.classList.toggle('open');
+            navToggle.classList.toggle('open', open);
+            navToggle.setAttribute('aria-expanded', String(open));
+        });
+        mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }));
+        document.querySelectorAll('.navbar__dropdown-wrap').forEach(wrap => {
+            wrap.querySelector('.navbar__dropdown-btn').addEventListener('click', function () {
+                const open = wrap.classList.toggle('open');
+                this.setAttribute('aria-expanded', String(open));
+            });
+        });
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.navbar__dropdown-wrap')) {
+                document.querySelectorAll('.navbar__dropdown-wrap.open').forEach(w => {
+                    w.classList.remove('open');
+                    w.querySelector('.navbar__dropdown-btn').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+        document.querySelectorAll('.navbar__mobile-group-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const open = btn.nextElementSibling.classList.toggle('open');
+                btn.setAttribute('aria-expanded', String(open));
+            });
+        });
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        /* ══════════════════════════════════════
+           PDF.js
+        ══════════════════════════════════════ */
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        function formatDate(str) {
+            if (!str) return '';
+            try {
+                return new Date(str + 'T00:00:00').toLocaleDateString('en-AU', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                });
+            } catch { return str; }
+        }
+
+        /* ── Load manifest ── */
+        let docs = [];
+        async function boot() {
+            try {
+                const r = await fetch('assets/tnipdfs/manifest.json?v=' + Date.now());
+                docs = await r.json();
+            } catch { docs = []; }
+            const c = docs.length;
+            document.getElementById('tniCount').textContent = c ? c + ' report' + (c !== 1 ? 's' : '') : '';
+            buildGrid();
+        }
+
+        /* ── Build card grid ── */
+        function buildGrid() {
+            const grid = document.getElementById('tniGrid');
+            grid.innerHTML = '';
+            if (!docs.length) {
+                grid.innerHTML = `
+                    <div class="tni-empty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        <span class="tni-empty-title">No reports yet</span>
+                        <span class="tni-empty-sub">Reports will appear here when published</span>
+                    </div>`;
+                return;
+            }
+            docs.forEach(doc => {
+                const card = document.createElement('article');
+                card.className = 'tni-card';
+                card.setAttribute('role', 'listitem');
+                card.setAttribute('tabindex', '0');
+                card.innerHTML = `
+                    <div class="tni-card-preview">
+                        <div class="tni-skeleton" id="sk-${doc.id}"></div>
+                        <canvas id="th-${doc.id}" style="display:none;"></canvas>
+                        <div class="tni-card-shield"></div>
+                        <div class="tni-card-hint">
+                            <div class="tni-hint-inner">
+                                <div class="tni-hint-circle">
+                                    <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </div>
+                                <span class="tni-hint-label">View Report</span>
+                            </div>
+                        </div>
+                        <span class="tni-card-pages" id="pg-${doc.id}"></span>
+                    </div>
+                    <div class="tni-card-body">
+                        <span class="tni-card-date">${formatDate(doc.date)}</span>
+                        <p class="tni-card-title">${doc.title}</p>
+                    </div>`;
+                card.addEventListener('click', () => openViewer(doc));
+                card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openViewer(doc); } });
+                grid.appendChild(card);
+                loadThumb(doc);
+            });
+        }
+
+        /* ── Thumbnail ── */
+        async function loadThumb(doc) {
+            const sk  = document.getElementById('sk-'  + doc.id);
+            const th  = document.getElementById('th-'  + doc.id);
+            const pgb = document.getElementById('pg-'  + doc.id);
+            try {
+                const pdf  = await pdfjsLib.getDocument({ url: 'assets/tnipdfs/' + encodeURIComponent(doc.file) }).promise;
+                if (pgb) pgb.textContent = pdf.numPages + (pdf.numPages === 1 ? ' page' : ' pages');
+                const page = await pdf.getPage(1);
+                const vp   = page.getViewport({ scale: 1 });
+                const scale = 300 / vp.width;
+                const svp  = page.getViewport({ scale });
+                th.width = svp.width; th.height = svp.height;
+                await page.render({ canvasContext: th.getContext('2d'), viewport: svp }).promise;
+                if (sk) sk.style.display = 'none';
+                th.style.display = 'block';
+                th.addEventListener('contextmenu', e => e.preventDefault());
+            } catch {
+                if (sk) { sk.style.animation = 'none'; sk.style.background = '#eef0ee'; }
+            }
+        }
+
+        /* ══════════════════════════════════════
+           VIEWER — one page at a time
+        ══════════════════════════════════════ */
+        let viewer = { pdf: null, cur: 1, tot: 0 };
+
+        const overlay  = document.getElementById('tniOverlay');
+        const pageArea = document.getElementById('tniPage');
+        const inner    = document.getElementById('tniPageInner');
+        const titleEl  = document.getElementById('tniTitle');
+        const dateEl   = document.getElementById('tniDate');
+        const curEl    = document.getElementById('tniCur');
+        const totEl    = document.getElementById('tniTot');
+        const cnt2     = document.getElementById('tniCount2');
+        const prevBtn  = document.getElementById('tniPrev');
+        const nextBtn  = document.getElementById('tniNext');
+
+        async function openViewer(doc) {
+            /* Reset UI */
+            titleEl.textContent = doc.title;
+            dateEl.textContent  = formatDate(doc.date);
+            curEl.textContent   = '1';
+            totEl.textContent   = '—';
+            cnt2.textContent    = '— / —';
+            prevBtn.disabled    = true;
+            nextBtn.disabled    = true;
+            showLoading();
+
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            try {
+                viewer.pdf = await pdfjsLib.getDocument({ url: 'assets/tnipdfs/' + encodeURIComponent(doc.file) }).promise;
+                viewer.cur = 1;
+                viewer.tot = viewer.pdf.numPages;
+                totEl.textContent = viewer.tot;
+                await showPage(1);
+            } catch (e) {
+                inner.innerHTML = '<p style="color:rgba(255,255,255,0.4);padding:40px;font-family:sans-serif;">Could not load document.</p>';
+            }
+        }
+
+        function showLoading() {
+            inner.innerHTML = '<div class="tni-mloading"><div class="tni-spinner"></div></div>';
+        }
+
+        async function showPage(n) {
+            showLoading();
+            pageArea.scrollTop = 0;
+
+            const page = await viewer.pdf.getPage(n);
+            const dpr  = window.devicePixelRatio || 1;
+            const containerW = Math.min(inner.clientWidth || 820, 820);
+            const vp0  = page.getViewport({ scale: 1 });
+            const scale = (containerW / vp0.width) * dpr;
+            const vp   = page.getViewport({ scale });
+
+            const canvas = document.createElement('canvas');
+            canvas.width  = vp.width;
+            canvas.height = vp.height;
+            canvas.style.width  = (vp.width  / dpr) + 'px';
+            canvas.style.height = (vp.height / dpr) + 'px';
+            canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+            await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+
+            inner.innerHTML = '';
+            inner.appendChild(canvas);
+
+            /* update HUD */
+            viewer.cur = n;
+            curEl.textContent = n;
+            cnt2.textContent  = n + ' / ' + viewer.tot;
+            prevBtn.disabled  = n <= 1;
+            nextBtn.disabled  = n >= viewer.tot;
+        }
+
+        prevBtn.addEventListener('click', () => { if (viewer.cur > 1) showPage(viewer.cur - 1); });
+        nextBtn.addEventListener('click', () => { if (viewer.cur < viewer.tot) showPage(viewer.cur + 1); });
+
+        document.getElementById('tniClose').addEventListener('click', closeViewer);
+        overlay.addEventListener('click', e => { if (e.target === overlay) closeViewer(); });
+        document.addEventListener('keydown', e => {
+            if (!overlay.classList.contains('open')) return;
+            if (e.key === 'Escape') closeViewer();
+            if (e.key === 'ArrowRight' && viewer.cur < viewer.tot) showPage(viewer.cur + 1);
+            if (e.key === 'ArrowLeft'  && viewer.cur > 1)          showPage(viewer.cur - 1);
+        });
+
+        function closeViewer() {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+            if (viewer.pdf) { viewer.pdf.destroy(); viewer.pdf = null; }
+            inner.innerHTML = '';
+        }
+
+        boot();
+    </script>
+
+</body>
+</html>

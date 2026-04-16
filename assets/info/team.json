@@ -1,0 +1,66 @@
+[
+  {
+    "id": "abhi-aggarwal",
+    "name": "Abhi Aggarwal",
+    "title": "Managing Director",
+    "bioPreview": "Abhi is the Founder and Managing Director of OmniTax Professionals.  He has over 22 years of tax experience, and prior to establishing  OmniTax Professionals, he was a partner for 10 years at a Big 4 accounting firm.",
+    "bio": [
+      "Abhi is the Founder and Managing Director of OmniTax Professionals.  He has over 22 years of tax experience, and prior to establishing  OmniTax Professionals, he was a partner for 10 years at a Big 4 accounting firm.",
+      "Abhi specialises in providing tax and structuring advice to his clients in various industries including infrastructure, property,  resources, and financial services.  In particular, Abhi is well versed in identifying value, managing risk, and implementing solutions for clients in relation to mergers, acquisitions, divestments, inbound and outbound investment, refinancings and capital  restructures. He is also experienced in assisting his clients with their tax compliance requirements and strategic management of any reviews, audits, disputes, and other liaison with tax authorities.",
+      "**Years of Experience**",
+      "22+ years (including 10 years as a Partnerat a Big 4 accounting firm)",
+      "**Formal Qualifications**",
+      "• Member, Chartered Accountants Australia and New Zealand",
+      "• Registered Tax Agent",
+      "• Graduate Diploma of Chartered Accounting (GradDipCA)",
+      "• Graduate Diploma of Applied Finance (Corporate Finance)",
+      "• Bachelor of Business (Accounting, Finance)",
+      "• Bachelor of Information Technology (Information Systems)"
+    ],
+    "photo": "assets/images/placeholderstanding.png"
+  },
+  {
+    "id": "allan-nielsen",
+    "name": "Allan Nielsen",
+    "title": "Managing Director",
+    "bioPreview": "placeholder",
+    "bio": [
+      "placholder",
+      "placholder"
+    ],
+    "photo": "assets/images/placeholderstanding.png"
+  },
+  {
+    "id": "stephanie-lam",
+    "name": "Stephanie Lam",
+    "title": "Managing Director",
+    "bioPreview": "placeholder",
+    "bio": [
+      "placholder",
+      "placholder"
+    ],
+    "photo": "assets/images/placeholderstanding.png"
+  },
+  {
+    "id": "alice-ratcliffe",
+    "name": "Alice Ratcliffe",
+    "title": "Director",
+    "bioPreview": "placeholder",
+    "bio": [
+      "placholder",
+      "placholder"
+    ],
+    "photo": "assets/images/placeholderstanding.png"
+  },
+  {
+    "id": "ted-ryan",
+    "name": "Ted Ryan",
+    "title": "Director",
+    "bioPreview": "placeholder",
+    "bio": [
+      "placholder",
+      "placholder"
+    ],
+    "photo": "assets/images/placeholderstanding.png"
+  }
+]
