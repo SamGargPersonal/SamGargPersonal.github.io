@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sam Garg Websites — High-converting freelance web design & development for modern businesses." />
+  <title>Sam Garg Websites | Freelance Web Design & Development</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+            display: ["Montserrat", "Inter", "sans-serif"],
+          },
+          colors: {
+            midnight: {
+              900: "#0d1b2a",
+              800: "#1b263b",
+              700: "#243447",
+            },
+            neon: {
+              cyan: "#00f5ff",
+              teal: "#00d4aa",
+              aqua: "#7fffd4",
+            },
+          },
+          backgroundImage: {
+            "midnight-gradient": "linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #0d1b2a 100%)",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="font-sans text-gray-200 antialiased">
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div id="scroll-progress-bar" class="scroll-progress__bar"></div>
+  </div>
+
+  <!-- Custom cursor spotlight (desktop) -->
+  <div id="cursor-spotlight" class="cursor-spotlight" aria-hidden="true"></div>
+
+  <!-- Decorative circuit grid overlay -->
+  <div class="circuit-overlay fixed inset-0 z-0" aria-hidden="true"></div>
+
+  <!-- Ambient aurora blobs -->
+  <div class="aurora aurora--1 fixed inset-0 z-0" aria-hidden="true"></div>
+  <div class="aurora aurora--2 fixed inset-0 z-0" aria-hidden="true"></div>
+
+  <!-- ========== BUSINESS STATUS DISCLAIMER ========== -->
+  <div
+    class="relative z-[60] border-b border-amber-400/50 bg-amber-950/95 px-4 py-3 text-center shadow-[0_4px_24px_rgba(251,191,36,0.15)]"
+    role="alert"
+    aria-live="polite"
+  >
+    <p class="text-xs font-bold uppercase tracking-wide text-amber-100 sm:text-sm">
+      I have not started business, and none of the below applies.
+    </p>
+  </div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="nav-glass sticky top-0 z-50">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Main navigation">
+
+      <!-- Brand -->
+      <a href="#home" class="group flex items-center gap-2.5">
+        <img
+          id="site-logo"
+          src="assets/logo.png"
+          alt="Sam Garg Websites logo"
+          class="site-logo hidden h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10"
+          width="40"
+          height="40"
+        />
+        <span id="brand-text" class="flex items-baseline gap-1.5">
+          <span class="font-display text-lg font-bold tracking-tight text-white transition-colors group-hover:text-neon-cyan sm:text-xl">
+            Sam Garg
+          </span>
+          <span class="font-display text-xs font-extrabold tracking-[0.25em] text-neon-teal text-glow-teal sm:text-sm">
+            WEBSITES
+          </span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden items-center gap-8 md:flex" role="list">
+        <li><a href="#home" data-section="home" class="nav-link text-sm font-medium text-gray-300 transition-colors hover:text-neon-cyan focus-visible:outline-none focus-visible:text-neon-cyan">Home</a></li>
+        <li><a href="#about" data-section="about" class="nav-link text-sm font-medium text-gray-300 transition-colors hover:text-neon-cyan focus-visible:outline-none focus-visible:text-neon-cyan">About</a></li>
+        <li><a href="#services" data-section="services" class="nav-link text-sm font-medium text-gray-300 transition-colors hover:text-neon-cyan focus-visible:outline-none focus-visible:text-neon-cyan">Services</a></li>
+        <li><a href="#portfolio" data-section="portfolio" class="nav-link text-sm font-medium text-gray-300 transition-colors hover:text-neon-cyan focus-visible:outline-none focus-visible:text-neon-cyan">Portfolio</a></li>
+        <li>
+          <a
+            href="#contact"
+            class="rounded-md border border-neon-cyan/40 px-4 py-1.5 text-sm font-semibold text-neon-cyan transition-all hover:border-neon-cyan hover:bg-neon-cyan/10 hover:text-glow-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/50 border-glow-cyan"
+          >
+            Contact
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-toggle"
+        type="button"
+        class="hamburger relative flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md border border-neon-cyan/20 bg-midnight-900/50 transition-colors hover:border-neon-cyan/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/50 md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="hamburger-line block h-0.5 w-5 rounded-full bg-neon-cyan"></span>
+        <span class="hamburger-line block h-0.5 w-5 rounded-full bg-neon-cyan"></span>
+        <span class="hamburger-line block h-0.5 w-5 rounded-full bg-neon-cyan"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile menu panel -->
+    <div id="mobile-menu" class="mobile-menu border-t border-neon-cyan/10 md:hidden" aria-hidden="true">
+      <ul class="flex flex-col gap-1 px-5 py-4" role="list">
+        <li><a href="#home" class="mobile-nav-link block rounded-md px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-neon-cyan/10 hover:text-neon-cyan">Home</a></li>
+        <li><a href="#about" class="mobile-nav-link block rounded-md px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-neon-cyan/10 hover:text-neon-cyan">About</a></li>
+        <li><a href="#services" class="mobile-nav-link block rounded-md px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-neon-cyan/10 hover:text-neon-cyan">Services</a></li>
+        <li><a href="#portfolio" class="mobile-nav-link block rounded-md px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-neon-cyan/10 hover:text-neon-cyan">Portfolio</a></li>
+        <li><a href="#contact" class="mobile-nav-link block rounded-md px-3 py-2.5 text-sm font-semibold text-neon-cyan transition-colors hover:bg-neon-cyan/10">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="relative z-10">
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero-glow relative flex min-h-[calc(100vh-4.5rem)] items-center overflow-hidden px-5 py-20 lg:px-8">
+      <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+      <div class="mx-auto w-full max-w-4xl text-center">
+
+        <p class="hero-item mb-6 inline-block rounded-full border border-neon-teal/30 bg-midnight-800/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-neon-teal">
+          Freelance Web Developer · Australia · Age 16
+        </p>
+
+        <h1 class="font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <span class="hero-item hero-delay-1 block">High-Performance, Low-Maintenance Websites</span>
+          <span id="hero-scramble" class="hero-item hero-delay-2 mt-2 block bg-gradient-to-r from-neon-cyan via-neon-teal to-neon-aqua bg-clip-text text-transparent shimmer-text">
+            for Your Business.
+          </span>
+        </h1>
+
+        <p class="hero-item hero-delay-3 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-400 sm:text-lg">
+          I build affordable, ultra-secure static websites for businesses — hand-coded, fast, and free to host.
+          With <span class="font-medium text-neon-cyan">8 years of programming experience</span>, I bring the same precision to your site that I bring to everything I do.
+        </p>
+
+        <!-- Live stats -->
+        <div class="hero-item hero-delay-4 mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+          <div class="stat-pill">
+            <span class="stat-pill__value"><span data-count="8" data-suffix="+">0</span></span>
+            <span class="stat-pill__label">Years Coding</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill__value">$<span data-count="0">0</span></span>
+            <span class="stat-pill__label">Monthly Hosting</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill__value">&lt;1s</span>
+            <span class="stat-pill__label">Load Time</span>
+          </div>
+        </div>
+
+        <div class="hero-item hero-delay-5 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="#contact"
+            class="btn-cta btn-magnetic group inline-flex items-center gap-2 rounded-lg border border-neon-cyan/50 px-8 py-3.5 text-base font-semibold text-neon-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/60"
+          >
+            Get a Free Consultation
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href="#portfolio"
+            class="group inline-flex items-center gap-2 rounded-lg border border-white/10 px-8 py-3.5 text-base font-semibold text-gray-300 transition-all hover:border-neon-teal/40 hover:text-neon-teal"
+          >
+            See My Work
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tech marquee -->
+    <div class="tech-marquee border-y border-neon-cyan/10 py-4" aria-label="Technologies I use">
+      <div class="tech-marquee__track">
+        <span class="tech-marquee__item">HTML5</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">CSS3</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">JavaScript</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">Tailwind CSS</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">GitHub Pages</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">Responsive Design</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">SEO Basics</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">Web Animations</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <!-- duplicate for seamless loop -->
+        <span class="tech-marquee__item">HTML5</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">CSS3</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">JavaScript</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">Tailwind CSS</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">GitHub Pages</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">Responsive Design</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">SEO Basics</span>
+        <span class="tech-marquee__dot" aria-hidden="true"></span>
+        <span class="tech-marquee__item">Web Animations</span>
+      </div>
+    </div>
+
+    <div class="section-divider mx-auto max-w-5xl" aria-hidden="true"></div>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="px-5 py-24 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+
+        <div class="text-center">
+          <p class="text-xs font-semibold uppercase tracking-widest text-neon-cyan">About</p>
+          <h2 class="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+            Clean Code. Clear Communication.<br class="hidden sm:block" />
+            <span class="text-neon-teal">Built for Real Businesses.</span>
+          </h2>
+          <p class="mx-auto mt-5 max-w-3xl leading-relaxed text-gray-400">
+            I'm Sam — a 16-year-old freelance web developer who has been coding since I was 8.
+            I combine strong academics, school leadership experience, and years of hands-on programming
+            to deliver websites that look professional and work flawlessly.
+          </p>
+        </div>
+
+        <!-- Credentials -->
+        <div class="mt-14 grid gap-6 sm:grid-cols-2">
+          <div class="glass-card tilt-card reveal rounded-xl p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neon-cyan/30 bg-neon-cyan/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-neon-aqua">Developer</p>
+                <h3 class="mt-1 font-display text-xl font-bold text-white">Coding Since Age 8</h3>
+                <p class="mt-2 text-sm leading-relaxed text-gray-400">
+                  Eight years of building software — from first scripts at 8 to professional freelance web development at 16. I write clean, purposeful code and understand how to ship projects that last.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card tilt-card reveal reveal-delay-1 rounded-xl p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neon-teal/30 bg-neon-teal/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5zm10.5-8.25a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-neon-aqua">Academics &amp; Leadership</p>
+                <h3 class="mt-1 font-display text-xl font-bold text-white">Strong Student &amp; School Leader</h3>
+                <p class="mt-2 text-sm leading-relaxed text-gray-400">
+                  Academically high-achieving in Grade 11, with proven leadership roles at school. I communicate clearly with clients, explain technical decisions in plain language, and follow through on commitments.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card tilt-card reveal reveal-delay-2 rounded-xl p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neon-aqua/30 bg-neon-aqua/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-aqua" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-neon-aqua">Client-Facing</p>
+                <h3 class="mt-1 font-display text-xl font-bold text-white">Professional Communication</h3>
+                <p class="mt-2 text-sm leading-relaxed text-gray-400">
+                  Leadership at school has taught me how to listen, explain ideas clearly, and manage expectations — skills that translate directly to working with business owners on real projects.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card tilt-card reveal reveal-delay-3 rounded-xl p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neon-cyan/30 bg-neon-cyan/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.003 6.003 0 01-5.916 0" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-neon-aqua">Robotics</p>
+                <h3 class="mt-1 font-display text-xl font-bold text-white">World-Class Problem Solver</h3>
+                <p class="mt-2 text-sm leading-relaxed text-gray-400">
+                  As the direct software lead for my team, I won the <span class="text-gray-300">SuperTeam category</span> in the Lightweight Soccer Division at RoboCup Junior International, and the <span class="text-gray-300">Lightweight Soccer Division</span> at RoboCup Junior Australia (RCJA) nationally.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Philosophy & benefits -->
+        <div class="mt-16 grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+
+          <div class="reveal">
+            <h3 class="font-display text-2xl font-bold text-white">My Philosophy</h3>
+            <p class="mt-4 leading-relaxed text-gray-400">
+              I specialize in <span class="font-medium text-gray-200">static, front-end architecture</span> hosted on
+              <span class="font-medium text-neon-cyan">GitHub Pages</span> — no databases, no server-side scripts, no unnecessary complexity.
+              Every site is hand-crafted HTML, CSS, and JavaScript: lean, purposeful, and built to last.
+            </p>
+            <p class="mt-4 leading-relaxed text-gray-400">
+              Most agencies sell you bloated WordPress templates with recurring fees. I deliver a site you fully own — fast, secure, and free to host forever.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="glass-card reveal flex items-start gap-4 rounded-xl p-5">
+              <div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-neon-cyan/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neon-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Maximum Security</h4>
+                <p class="mt-1 text-sm text-gray-400">No server to hack. Static files have no attack surface — your site is virtually impenetrable.</p>
+              </div>
+            </div>
+
+            <div class="glass-card reveal reveal-delay-1 flex items-start gap-4 rounded-xl p-5">
+              <div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-neon-teal/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m0 0v12m0-12h-3m3 0v12m0 0h9.75M7.5 18h9.75M7.5 18a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Zero Server Maintenance</h4>
+                <p class="mt-1 text-sm text-gray-400">No updates to patch, no plugins to break. Deploy once and forget — it just works.</p>
+              </div>
+            </div>
+
+            <div class="glass-card reveal reveal-delay-2 flex items-start gap-4 rounded-xl p-5">
+              <div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-neon-aqua/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neon-aqua" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Blazing-Fast Loading</h4>
+                <p class="mt-1 text-sm text-gray-400">No server round-trips or heavy frameworks. Pages load instantly — better UX and higher Google rankings.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider mx-auto max-w-5xl" aria-hidden="true"></div>
+
+    <!-- ===== SERVICES & PRICING ===== -->
+    <section id="services" class="px-5 py-24 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+
+        <div class="text-center">
+          <p class="text-xs font-semibold uppercase tracking-widest text-neon-cyan">Services</p>
+          <h2 class="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+            Transparent Pricing.<br class="hidden sm:block" />
+            <span class="text-neon-teal">No Hidden Fees.</span>
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-gray-400">
+            Every package includes responsive design, GitHub Pages hosting setup, and full ownership of your site. Pick the tier that fits your business.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-8 lg:grid-cols-3">
+
+          <!-- Card 1 -->
+          <article class="pricing-card tilt-card reveal flex flex-col rounded-2xl p-8">
+            <h3 class="font-display text-xl font-bold text-white">The One-Pager</h3>
+            <p class="mt-3">
+              <span class="font-display text-3xl font-extrabold text-neon-cyan">$300</span>
+              <span class="text-gray-500"> – </span>
+              <span class="font-display text-3xl font-extrabold text-neon-cyan">$400</span>
+              <span class="ml-1 text-sm text-gray-500">AUD</span>
+            </p>
+            <ul class="mt-6 flex-1 space-y-3 text-sm text-gray-400" role="list">
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Single high-converting landing page
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Integrated contact form
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Social media links
+              </li>
+            </ul>
+            <p class="mt-6 border-t border-neon-cyan/10 pt-5 text-xs text-gray-500">
+              <span class="font-medium text-gray-400">Ideal for:</span> local tradespeople, cafés, and solo operators who need a professional online presence fast.
+            </p>
+            <a href="#contact" class="mt-6 block rounded-lg border border-neon-cyan/30 py-2.5 text-center text-sm font-semibold text-neon-cyan transition-colors hover:border-neon-cyan hover:bg-neon-cyan/10">
+              Get Started
+            </a>
+          </article>
+
+          <!-- Card 2 (featured) -->
+          <article class="pricing-card pricing-card--featured tilt-card reveal reveal-delay-1 relative flex flex-col rounded-2xl p-8">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-neon-teal/40 bg-midnight-800 px-4 py-1 text-xs font-bold uppercase tracking-wider text-neon-teal">
+              Most Popular
+            </span>
+            <h3 class="font-display text-xl font-bold text-white">The Standard Package</h3>
+            <p class="mt-3">
+              <span class="font-display text-3xl font-extrabold text-neon-teal">$500</span>
+              <span class="text-gray-500"> – </span>
+              <span class="font-display text-3xl font-extrabold text-neon-teal">$700</span>
+              <span class="ml-1 text-sm text-gray-500">AUD</span>
+            </p>
+            <ul class="mt-6 flex-1 space-y-3 text-sm text-gray-400" role="list">
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                3–5 pages (Home, About, Services, Contact)
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Mobile-responsive design
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Contact form &amp; social integration
+              </li>
+            </ul>
+            <p class="mt-6 border-t border-neon-teal/10 pt-5 text-xs text-gray-500">
+              <span class="font-medium text-gray-400">Ideal for:</span> small businesses ready to establish a complete, professional web presence.
+            </p>
+            <a href="#contact" class="btn-cta mt-6 block rounded-lg border border-neon-teal/50 py-2.5 text-center text-sm font-semibold text-neon-teal">
+              Get Started
+            </a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="pricing-card tilt-card reveal reveal-delay-2 flex flex-col rounded-2xl p-8">
+            <h3 class="font-display text-xl font-bold text-white">The Premium Custom</h3>
+            <p class="mt-3">
+              <span class="font-display text-3xl font-extrabold text-neon-aqua">$800</span>
+              <span class="text-gray-500"> – </span>
+              <span class="font-display text-3xl font-extrabold text-neon-aqua">$1,000</span>
+              <span class="ml-1 text-sm text-gray-500">AUD</span>
+            </p>
+            <ul class="mt-6 flex-1 space-y-3 text-sm text-gray-400" role="list">
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Up to 7 custom pages
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Custom CSS animations
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                AI-assisted content polishing
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                Basic SEO setup
+              </li>
+            </ul>
+            <p class="mt-6 border-t border-neon-cyan/10 pt-5 text-xs text-gray-500">
+              <span class="font-medium text-gray-400">Ideal for:</span> growing brands that want a polished, animated site with search-ready content.
+            </p>
+            <a href="#contact" class="mt-6 block rounded-lg border border-neon-aqua/30 py-2.5 text-center text-sm font-semibold text-neon-aqua transition-colors hover:border-neon-aqua hover:bg-neon-aqua/10">
+              Get Started
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider mx-auto max-w-5xl" aria-hidden="true"></div>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section id="portfolio" class="px-5 py-24 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+
+        <div class="text-center">
+          <p class="text-xs font-semibold uppercase tracking-widest text-neon-cyan">Portfolio</p>
+          <h2 class="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+            Real Projects.<br class="hidden sm:block" />
+            <span class="text-neon-teal">Real Results.</span>
+          </h2>
+        </div>
+
+        <!-- Featured project -->
+        <article class="glass-card tilt-card reveal mt-14 overflow-hidden rounded-2xl">
+          <div class="grid lg:grid-cols-2">
+
+            <!-- Live site preview -->
+            <div class="portfolio-screenshot relative flex aspect-video items-center justify-center lg:aspect-auto lg:min-h-[420px]">
+              <div class="portfolio-screenshot__glow" aria-hidden="true"></div>
+
+              <!-- Mock browser chrome -->
+              <div class="relative z-10 mx-6 w-full max-w-md">
+                <div class="overflow-hidden rounded-lg border border-amber-400/20 bg-[#0f1a2e]/90 shadow-2xl portfolio-browser">
+                  <div class="flex items-center gap-1.5 border-b border-amber-400/10 px-4 py-2.5">
+                    <span class="h-2.5 w-2.5 rounded-full bg-red-400/70"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/70"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-green-400/70"></span>
+                    <div class="ml-3 flex-1 rounded bg-[#1a2740]/80 px-3 py-1 text-[10px] text-gray-500">omnitax.com.au</div>
+                  </div>
+                  <div class="space-y-3 bg-[#f8f6f1] p-5">
+                    <div class="flex items-center justify-between">
+                      <div class="h-2.5 w-14 rounded bg-amber-600/70"></div>
+                      <div class="flex gap-1.5">
+                        <div class="h-1.5 w-8 rounded bg-gray-400/40"></div>
+                        <div class="h-1.5 w-8 rounded bg-gray-400/40"></div>
+                        <div class="h-1.5 w-8 rounded bg-gray-400/40"></div>
+                      </div>
+                    </div>
+                    <div class="h-3 w-4/5 rounded bg-[#1a2740]/80"></div>
+                    <div class="h-2 w-full rounded bg-gray-400/30"></div>
+                    <div class="h-2 w-3/4 rounded bg-gray-400/20"></div>
+                    <div class="mt-3 flex gap-2">
+                      <div class="h-6 w-20 rounded-md border border-amber-500/40 bg-amber-500/15"></div>
+                      <div class="h-6 w-16 rounded-md border border-[#1a2740]/20"></div>
+                    </div>
+                    <div class="mt-4 grid grid-cols-3 gap-2">
+                      <div class="aspect-[3/2] rounded border border-gray-300/40 bg-white portfolio-block"></div>
+                      <div class="aspect-[3/2] rounded border border-gray-300/40 bg-white portfolio-block portfolio-block--delay"></div>
+                      <div class="aspect-[3/2] rounded border border-gray-300/40 bg-white portfolio-block portfolio-block--delay-2"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-4 text-center text-xs text-amber-400/80">Tax advisory firm · Brisbane, QLD</p>
+              </div>
+            </div>
+
+            <!-- Project details -->
+            <div class="flex flex-col p-8 lg:p-10">
+              <span class="inline-flex w-fit items-center gap-1.5 rounded-full border border-neon-cyan/30 bg-neon-cyan/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-neon-cyan">
+                <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                Featured Project
+              </span>
+
+              <h3 class="mt-4 font-display text-2xl font-bold text-white sm:text-3xl">
+                OmniTax Professionals Website
+              </h3>
+              <p class="mt-1 text-sm text-neon-teal">Client Work · Tax Advisory · Brisbane, Australia</p>
+
+              <p class="mt-4 leading-relaxed text-gray-400">
+                A complete static rebuild for a Queensland tax advisory practice — from CMS migration through publishing tools the client can run themselves.
+              </p>
+
+              <div class="mt-5 space-y-4">
+                <div>
+                  <h4 class="text-sm font-semibold text-white">The challenge</h4>
+                  <p class="mt-1.5 text-sm leading-relaxed text-gray-400">
+                    The firm needed a credible, fast site that could showcase senior &ldquo;Big&nbsp;4&rdquo; experience, publish fortnightly Tax News PDFs, present a growing team, and meet Australian privacy and terms requirements — without WordPress fees, plugin risk, or ongoing developer dependency.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-sm font-semibold text-white">What I delivered</h4>
+                  <ul class="mt-2 space-y-2 text-sm text-gray-400" role="list">
+                    <li class="flex items-start gap-2">
+                      <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      <span><span class="font-medium text-gray-300">Full site architecture</span> — clean directory URLs across 7+ public pages, fixed navigation, and responsive layouts from hero through footer</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      <span><span class="font-medium text-gray-300">Custom PDF experience</span> — reusable PDF.js viewer with page previews on desktop and a mobile dock, used for Tax News, team bios, and legal documents</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      <span><span class="font-medium text-gray-300">Insights publishing system</span> — manifest-driven grid with date sorting, retina-sharp thumbnails, and GitHub Actions workflows to add reports without editing HTML</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      <span><span class="font-medium text-gray-300">Team management</span> — JSON-driven Our People page with configurable photo cropping, leadership section, and the same admin workflow for new hires</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      <span><span class="font-medium text-gray-300">Legal &amp; compliance</span> — Privacy Policy and Terms of Use aligned with the Australian Privacy Act, with inline PDF viewing</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="mt-0.5 h-4 w-4 shrink-0 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      <span><span class="font-medium text-gray-300">Brand polish</span> — TPB and CAANZ registration badges, refined typography, client values content, and a private client portal kept off public navigation</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p class="text-sm leading-relaxed text-gray-400">
+                  <span class="font-medium text-gray-300">Result:</span> A professional, maintainable site the firm owns outright — fast, secure, and free to host, with workflows that let them update content themselves.
+                </p>
+              </div>
+
+              <!-- Tech stack badges -->
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-cyan">HTML</span>
+                <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-teal">CSS</span>
+                <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-aqua">JavaScript</span>
+                <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-cyan">PDF.js</span>
+                <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-teal">GitHub Actions</span>
+                <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-aqua">Static Architecture</span>
+              </div>
+
+              <!-- Success summary -->
+              <div class="mt-6 grid grid-cols-3 gap-4 border-t border-neon-cyan/10 pt-6">
+                <div>
+                  <p class="font-display text-2xl font-extrabold text-neon-cyan"><span data-count="7">0</span>+</p>
+                  <p class="mt-1 text-xs text-gray-500">Pages built</p>
+                </div>
+                <div>
+                  <p class="font-display text-2xl font-extrabold text-neon-teal"><span data-count="13">0</span>+</p>
+                  <p class="mt-1 text-xs text-gray-500">Tax reports published</p>
+                </div>
+                <div>
+                  <p class="font-display text-2xl font-extrabold text-neon-aqua">$<span data-count="0">0</span></p>
+                  <p class="mt-1 text-xs text-gray-500">Monthly hosting</p>
+                </div>
+              </div>
+
+              <a
+                href="https://omnitax.com.au/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group mt-6 inline-flex w-fit items-center gap-2 rounded-lg border border-neon-teal/40 px-5 py-2.5 text-sm font-semibold text-neon-teal transition-all hover:border-neon-teal hover:bg-neon-teal/10"
+              >
+                Visit Site
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Secondary project -->
+        <article class="glass-card tilt-card reveal reveal-delay-1 mt-8 rounded-2xl p-8">
+          <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-neon-aqua">Personal Project</span>
+              <h3 class="mt-2 font-display text-xl font-bold text-white">Sam Garg Websites — This Site</h3>
+              <p class="mt-2 max-w-xl text-sm leading-relaxed text-gray-400">
+                A fully custom freelance portfolio built from scratch — interactive particle canvas, magnetic buttons, 3D tilt cards, scroll-triggered animations, and zero frameworks beyond Tailwind. Hosted free on GitHub Pages with sub-second load times.
+              </p>
+            </div>
+            <div class="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-end">
+              <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-cyan">HTML</span>
+              <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-teal">Canvas API</span>
+              <span class="tech-badge rounded-md px-3 py-1 text-xs font-semibold text-neon-aqua">Tailwind CSS</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="section-divider mx-auto max-w-5xl" aria-hidden="true"></div>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="px-5 py-24 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+
+        <div class="text-center">
+          <p class="text-xs font-semibold uppercase tracking-widest text-neon-cyan">Contact</p>
+          <h2 class="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+            Let's Build Something<br class="hidden sm:block" />
+            <span class="text-neon-teal">Great Together.</span>
+          </h2>
+          <p class="mx-auto mt-4 max-w-xl text-gray-400">
+            Tell me about your project and I'll get back to you with a free consultation and quote.
+          </p>
+        </div>
+
+        <div class="mt-14 grid items-start gap-10 lg:grid-cols-5 lg:gap-12">
+
+          <!-- Contact form -->
+          <div class="reveal lg:col-span-3">
+            <form id="contact-form" class="glass-card rounded-2xl p-6 sm:p-8" novalidate>
+              <div class="space-y-5">
+                <div>
+                  <label for="name" class="mb-1.5 block text-sm font-medium text-gray-300">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    autocomplete="name"
+                    placeholder="Your full name"
+                    class="form-input w-full rounded-lg px-4 py-3 text-sm text-gray-200"
+                  />
+                </div>
+
+                <div>
+                  <label for="email" class="mb-1.5 block text-sm font-medium text-gray-300">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    autocomplete="email"
+                    placeholder="you@example.com"
+                    class="form-input w-full rounded-lg px-4 py-3 text-sm text-gray-200"
+                  />
+                </div>
+
+                <div>
+                  <label for="package" class="mb-1.5 block text-sm font-medium text-gray-300">Interested Package</label>
+                  <select
+                    id="package"
+                    name="package"
+                    class="form-input w-full rounded-lg px-4 py-3 text-sm text-gray-200"
+                  >
+                    <option value="">Select a package (optional)</option>
+                    <option value="one-pager">The One-Pager ($300–$400)</option>
+                    <option value="standard">The Standard Package ($500–$700)</option>
+                    <option value="premium">The Premium Custom ($800–$1,000)</option>
+                    <option value="unsure">Not sure yet</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message" class="mb-1.5 block text-sm font-medium text-gray-300">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows="5"
+                    placeholder="Tell me about your business and what you need..."
+                    class="form-input w-full resize-y rounded-lg px-4 py-3 text-sm text-gray-200"
+                  ></textarea>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                id="form-submit-btn"
+                class="btn-cta btn-magnetic mt-6 w-full rounded-lg border border-neon-cyan/50 py-3.5 text-sm font-semibold text-neon-cyan transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/60 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Send Message
+              </button>
+              <p id="form-error" class="mt-4 hidden text-center text-sm text-red-400" role="alert"></p>
+            </form>
+
+            <!-- Success state -->
+            <div id="form-success" class="glass-card hidden rounded-2xl p-8 text-center" role="status">
+              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-neon-teal/40 bg-neon-teal/10">
+                <svg class="h-7 w-7 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+              <h3 class="mt-5 font-display text-xl font-bold text-white">Message Received!</h3>
+              <p class="mt-2 text-sm text-gray-400">
+                Thanks for reaching out. I'll review your project and respond within 24–48 hours.
+              </p>
+            </div>
+          </div>
+
+          <!-- Honest callout -->
+          <aside class="reveal reveal-delay-1 lg:col-span-2">
+            <div class="callout-box rounded-2xl p-6 sm:p-8">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-neon-teal/30 bg-neon-teal/10">
+                  <svg class="h-5 w-5 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-display text-lg font-bold text-neon-teal">A Quick Heads-Up</h3>
+                  <p class="mt-3 text-sm leading-relaxed text-gray-300">
+                    Currently balancing projects with Grade 11 studies. Response time within 24–48 hours. Development takes place on evenings and weekends to ensure maximum quality.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 glass-card rounded-2xl p-6">
+              <h4 class="text-sm font-semibold text-white">Other Ways to Reach Me</h4>
+              <ul class="mt-4 space-y-3 text-sm" role="list">
+                <li>
+                  <a href="https://github.com/SamGargPersonal" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 text-gray-400 transition-colors hover:text-neon-cyan">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-lg border border-neon-cyan/20 bg-neon-cyan/5 transition-colors group-hover:border-neon-cyan/40">
+                      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </span>
+                    github.com/SamGargPersonal
+                  </a>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <span class="flex h-9 w-9 items-center justify-center rounded-lg border border-neon-teal/20 bg-neon-teal/5">
+                    <svg class="h-4 w-4 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  </span>
+                  Australia
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <span class="flex h-9 w-9 items-center justify-center rounded-lg border border-neon-aqua/20 bg-neon-aqua/5">
+                    <svg class="h-4 w-4 text-neon-aqua" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </span>
+                  Response within 24–48 hours
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-6 glass-card rounded-2xl p-6">
+              <h4 class="text-sm font-semibold text-white">What happens next?</h4>
+              <ol class="mt-4 space-y-3 text-sm text-gray-400" role="list">
+                <li class="flex gap-3">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-neon-cyan/30 text-xs font-bold text-neon-cyan">1</span>
+                  I review your message and project scope
+                </li>
+                <li class="flex gap-3">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-neon-cyan/30 text-xs font-bold text-neon-cyan">2</span>
+                  We exchange emails to ensure we understand the project.
+                </li>
+                <li class="flex gap-3">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-neon-cyan/30 text-xs font-bold text-neon-cyan">3</span>
+                  You receive a clear quote — no surprises
+                </li>
+              </ol>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer relative z-10 px-5 py-10 lg:px-8">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
+      <div class="text-center sm:text-left">
+        <p class="text-sm text-gray-500">
+          &copy; 2026 Sam Garg Websites. All rights reserved.
+        </p>
+        <p class="mt-1 text-xs text-gray-600">Built with HTML, CSS &amp; JavaScript — hosted free on GitHub Pages.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="flex flex-wrap items-center justify-center gap-6" role="list">
+          <li><a href="#home" class="text-sm text-gray-400 transition-colors hover:text-neon-cyan">Home</a></li>
+          <li><a href="#about" class="text-sm text-gray-400 transition-colors hover:text-neon-cyan">About</a></li>
+          <li><a href="#services" class="text-sm text-gray-400 transition-colors hover:text-neon-cyan">Services</a></li>
+          <li><a href="#portfolio" class="text-sm text-gray-400 transition-colors hover:text-neon-cyan">Portfolio</a></li>
+          <li><a href="#contact" class="text-sm text-gray-400 transition-colors hover:text-neon-cyan">Contact</a></li>
+          <li><a href="https://github.com/SamGargPersonal" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-400 transition-colors hover:text-neon-cyan">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
